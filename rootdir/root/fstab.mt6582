@@ -11,5 +11,9 @@
 /dev/block/mmcblk0p2  /protect_f  ext4  noatime,nosuid,nodev,noauto_da_alloc,commit=1,nodelalloc    wait,check
 /dev/block/mmcblk0p3  /protect_s  ext4  noatime,nosuid,nodev,noauto_da_alloc,commit=1,nodelalloc    wait,check
 
-/devices/platform/mtk-msdc.1/mmc_host            auto        vfat  defaults                                                    voldmanaged=sdcard1:auto,noemulatedsd
+
+
+/devices/platform/mtk-msdc.1/mmc_host   auto    vfat    defaults  voldmanaged=sdcard1:auto,noemulatedsd
 /devices/platform/mt_usb		auto	auto	defaults	voldmanaged=usbdisk0:auto
+
+/dev/block/zram0 none swap defaults zramsize=214748365,swapprio=1000

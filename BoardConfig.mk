@@ -1,8 +1,7 @@
 # inherit from the proprietary version
--include vendor/wiko/rainbow/BoardConfigVendor.mk
+-include vendor/wiko/bloom/BoardConfigVendor.mk
 
 
-# Board
 TARGET_BOARD_PLATFORM := mt6582
 TARGET_NO_BOOTLOADER := true
 TARGET_ARCH := arm
@@ -15,7 +14,7 @@ TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_CPU_SMP := true
 TARGET_CPU_VARIANT := cortex-a7
-DEVICE_RESOLUTION := 720x1280
+DEVICE_RESOLUTION := 480x800
 BOARD_HAS_NO_SELECT_BUTTON := true
 
 # make_ext4fs requires numbers in dec format
@@ -29,13 +28,14 @@ BOARD_KERNEL_CMDLINE :=
 BOARD_KERNEL_BASE := 0x10000000
 BOARD_KERNEL_PAGESIZE := 2048
 
-TARGET_BOOTLOADER_BOARD_NAME := rainbow
+TARGET_BOOTLOADER_BOARD_NAME := bloom
 
 TARGET_USERIMAGES_USE_EXT4:=true
 TARGET_USERIMAGES_SPARSE_EXT_DISABLED := false
 
-BOARD_CUSTOM_BOOTIMG_MK := device/wiko/rainbow/bootimg.mk
+BOARD_CUSTOM_BOOTIMG_MK := device/wiko/bloom/bootimg.mk
 BOARD_MKBOOTIMG_ARGS := --board 1336460062
+
 
 # Flags
 TARGET_GLOBAL_CFLAGS   += -mfpu=neon -mfloat-abi=softfp
@@ -46,31 +46,31 @@ TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
 # COMMON_GLOBAL_CFLAGS += -DMR0_AUDIO_BLOB
 # COMMON_GLOBAL_CFLAGS += -DNEEDS_VECTORIMPL_SYMBOLS
 
-TARGET_KMODULES := true
+##TARGET_KMODULES := true
 
-TARGET_PREBUILT_KERNEL := device/wiko/rainbow/kernel
-TARGET_RECOVERY_FSTAB := device/wiko/rainbow/rootdir/root/recovery.fstab
+TARGET_PREBUILT_KERNEL := device/wiko/bloom/kernel
+TARGET_RECOVERY_FSTAB := device/wiko/bloom/rootdir/root/recovery.fstab
 
 # Philz Recovery
-RECOVERY_VARIANT := philz
+#RECOVERY_VARIANT := philz
 BOARD_USE_MTK_LAYOUT := true
 BOARD_USE_NTFS_3G := false
 BOARD_HAS_NO_FB2PNG := true
 NO_AROMA_FILE_MANAGER := true
 
 # Deodex
-WITH_DEXPREOPT := false
-DISABLE_DEXPREOPT := true
+#WITH_DEXPREOPT := false
+#DISABLE_DEXPREOPT := true
 
 #Camera
-USE_CAMERA_STUB := true
-# BOARD_USE_JPEG := true
+##USE_CAMERA_STUB := true
+#BOARD_USE_JPEG := true
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_MTK := true
 BOARD_BLUETOOTH_DOES_NOT_USE_RFKILL := true
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/wiko/rainbow/bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/wiko/bloom/bluetooth
 
 # MTK hacks for hw
 # TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
@@ -81,23 +81,23 @@ BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/wiko/rainbow/bluetooth
 # PRESENT_TIME_OFFSET_FROM_VSYNC_NS := 0
 
 # EGL settings
-BOARD_EGL_CFG := device/wiko/rainbow/rootdir/configs/egl.cfg
+BOARD_EGL_CFG := device/wiko/bloom/rootdir/configs/egl.cfg
 USE_OPENGL_RENDERER := true
 BOARD_EGL_WORKAROUND_BUG_10194508 := true
 
-TARGET_PROVIDES_GRALLOC := true
-TARGET_LIBAGL_USE_GRALLOC_COPYBITS := true
-TARGET_ELECTRONBEAM_FRAMES := 6
+##TARGET_PROVIDES_GRALLOC := true
+##TARGET_LIBAGL_USE_GRALLOC_COPYBITS := true
+##TARGET_ELECTRONBEAM_FRAMES := 6
 
 #Graphics
-BOARD_USES_SKIAHWJPEG := true
+##BOARD_USES_SKIAHWJPEG := true
 
 #FIMG Acceleration
-BOARD_USES_FIMGAPI := true
+##BOARD_USES_FIMGAPI := true
 
 #HWComposer
-BOARD_USES_HWCOMPOSER := true
-BOARD_USE_SYSFS_VSYNC_NOTIFICATION := true
+##BOARD_USES_HWCOMPOSER := true
+##BOARD_USE_SYSFS_VSYNC_NOTIFICATION := true
 
 #Enable WEBGL in WebKit
 ENABLE_WEBGL := true
@@ -107,7 +107,7 @@ JS_ENGINE := v8
 
 # SELINUX
 BOARD_SEPOLICY_DIRS := \
-       device/wiko/rainbow/sepolicy
+       device/wiko/bloom/sepolicy
 
 BOARD_SEPOLICY_UNION := \
        device.te \
@@ -116,7 +116,7 @@ BOARD_SEPOLICY_UNION := \
        file_contexts
 
 # RIL
-BOARD_RIL_CLASS := ../../../device/wiko/rainbow/ril/
+BOARD_RIL_CLASS := ../../../device/wiko/bloom/ril/
 
 # WIFI
 BOARD_CONNECTIVITY_VENDOR := MediaTek
@@ -131,3 +131,7 @@ WIFI_DRIVER_FW_PATH_PARAM:="/dev/wmtWifi"
 WIFI_DRIVER_FW_PATH_STA:=STA
 WIFI_DRIVER_FW_PATH_AP:=AP
 WIFI_DRIVER_FW_PATH_P2P:=P2P
+
+
+# power
+#TARGET_POWERHAL_VARIANT := cm

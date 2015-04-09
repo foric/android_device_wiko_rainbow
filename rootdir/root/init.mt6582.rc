@@ -30,6 +30,7 @@ on init
 on fs
     write /proc/bootprof "INIT:eMMC:Mount_All_START"
     mount_all /fstab.mt6582
+swapon_all /fstab.mt6582
     write /proc/bootprof "INIT:eMMC:Mount_All_END"
 
 # mount different fs end
@@ -323,9 +324,9 @@ on post-fs-data
     chmod 0660 /dev/kd_camera_flashlight
     chmod 0660 /dev/kd_camera_hw_bus2
     chmod 0660 /dev/FM50AF
-    chmod 0660 /dev/OV8825AF
-    chmod 0660 /dev/OV8826AF
-    chmod 0660 /dev/LITEON3H7AF
+ #   chmod 0660 /dev/OV8825AF
+ #   chmod 0660 /dev/OV8826AF
+ #   chmod 0660 /dev/LITEON3H7AF
     chmod 0660 /dev/CAM_CAL_DRV
 
     chown system camera /dev/camera-sysram
@@ -335,10 +336,24 @@ on post-fs-data
     chown system camera /dev/kd_camera_flashlight
     chown system camera /dev/kd_camera_hw_bus2
     chown system camera /dev/FM50AF
-    chown system camera /dev/OV8825AF
-    chown system camera /dev/OV8826AF
-    chown system camera /dev/LITEON3H7AF
+#    chown system camera /dev/OV8825AF
+#    chown system camera /dev/OV8826AF
+#    chown system camera /dev/LITEON3H7AF
     chown system camera /dev/CAM_CAL_DRV
+
+#Camera
+    chmod 0660 /dev/OV5648AF_DARLING
+    chown system camera /dev/OV5648AF_DARLING
+
+    chmod 0660 /dev/OV5648AF_TRULY
+    chown system camera /dev/OV5648AF_TRULY
+
+    chmod 0660 /dev/OV5648AF_SUNWIN
+    chown system camera /dev/OV5648AF_SUNWIN
+
+    chmod 0660 /dev/OV5648AF_DARLING_ZL
+    chown system camera /dev/OV5648AF_DARLING_ZL
+
 
 
     #/dev/RT_Monitor

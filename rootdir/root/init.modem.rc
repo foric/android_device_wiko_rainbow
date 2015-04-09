@@ -44,6 +44,7 @@ service muxreport-daemon /system/bin/muxreport
 service ril-daemon /system/bin/rild
     class core
     socket rild stream 660 root radio
+    socket rild1 stream 660 root radio
     socket rild2 stream 660 root radio
     socket rild3 stream 660 root radio
     socket rild4 stream 660 root radio
