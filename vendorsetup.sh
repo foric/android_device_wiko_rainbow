@@ -1,1 +1,2 @@
 add_lunch_combo cm_bloom-userdebug
+add_lunch_combo cm_bloom-eng

@@ -14,7 +14,7 @@ bin/emcsmdlogger
 bin/geomagneticd
 bin/gsm0710muxd
 bin/gsm0710muxdmd2
-bin/lsm303md
+#bin/lsm303md
 bin/mdlogger
 bin/memsicd
 bin/msensord
@@ -31,8 +31,8 @@ bin/rildmd2
 bin/thermal_manager
 bin/wmt_loader
 etc/agps_profiles_conf.xml
-etc/audio_effects.conf
-etc/audio_policy.conf
+#etc/audio_effects.conf
+#etc/audio_policy.conf
 etc/firmware/catcher_filter_1_wg_n.bin
 etc/firmware/modem_1_wg_n.img
 etc/firmware/mt6572_82_patch_e1_0_hdr.bin
@@ -120,7 +120,7 @@ lib/libm4u.so
 lib/libMali.so
 lib/libmatv_cust.so
 lib/libmdloggerrecycle.so
-lib/libmnl.so
+#lib/libmnl.so
 lib/libmp4enc_sa.ca7.so
 lib/libmpo.so
 lib/libmpoencoder.so
@@ -163,11 +163,11 @@ lib/librilutils.so
 lib/libsched.so
 lib/libspeech_enh_lib.so
 lib/libssladp.so
-lib/libstagefrighthw.so
+#lib/libstagefrighthw.so
 lib/libutilrilmtk.so
 lib/libvcodec_oal.so
 lib/libvcodec_utility.so
-lib/libvcodecdrv.so
+#lib/libvcodecdrv.so
 lib/mtk-ril.so
 lib/mtk-rilmd2.so
 xbin/mnld

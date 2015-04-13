@@ -112,18 +112,17 @@ BOARD_USES_MTK_AUDIO := true
 
 
 
-TARGET_KMODULES := true
+#TARGET_KMODULES := true
 
 COMMON_GLOBAL_CFLAGS += -DDISABLE_HW_ID_MATCH_CHECK -DNEEDS_VECTORIMPL_SYMBOLS
 TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
 
 # allow more than one lun file
-TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/virtual/android_usb/android0/f_mass_storage/lun%d/file"
+#TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/virtual/android_usb/android0/f_mass_storage/lun%d/file"
 
 
-BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
+#BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
 
-TARGET_USES_ION := true
 
 
 # Shader cache config options
