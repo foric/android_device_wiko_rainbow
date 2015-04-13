@@ -18,21 +18,21 @@ on post-fs-data
     chown ccci ccci /sys/kernel/ccci/boot
     
     # Encrypt phone function
-    setprop vold.post_fs_data_done 1
+    setprop vold.post_fs_data_done 0
     
 service gsm0710muxd /system/bin/gsm0710muxd -s /dev/ttyC0 -f 512 -n 8 -m basic
     class core
     user root
     group radio cache inet misc ccci
     disabled
-    oneshot
+#    oneshot
 
 service gsm0710muxdmd2 /system/bin/gsm0710muxdmd2 -s /dev/ccci2_tty0 -f 512 -n 8 -m basic
     class core
     user root
     group radio cache inet misc ccci
     disabled
-    oneshot
+#    oneshot
 
 service muxreport-daemon /system/bin/muxreport
     class core
@@ -41,8 +41,10 @@ service muxreport-daemon /system/bin/muxreport
     disabled
     oneshot
 
+
 service ril-daemon /system/bin/rild
     class core
+#class main
     socket rild stream 660 root radio
     socket rild1 stream 660 root radio
     socket rild2 stream 660 root radio
@@ -56,12 +58,13 @@ service ril-daemon /system/bin/rild
     socket rild-atci stream 660 root radio
     user root
     group radio cache inet misc audio sdcard_r sdcard_rw log ccci system
-    disabled
+#    disabled
     oneshot
 
 service ril-daemon-md2 /system/bin/rildmd2
     class core
-    socket rild1 stream 660 root radio
+#class main 
+   socket rild1 stream 660 root radio
     socket rild-debug1 stream 660 radio system
     socket rild-md2 stream 660 root radio
     socket rild2-md2 stream 660 root radio
@@ -73,7 +76,7 @@ service ril-daemon-md2 /system/bin/rildmd2
     socket rild-atci-md2 stream 660 root radio
     user root
     group radio cache inet misc audio sdcard_r sdcard_rw log ccci system
-    disabled
+#    disabled
     oneshot
 
 service md_minilog_util /system/bin/md_minilog_util

@@ -1,5 +1,4 @@
-# inherit from the proprietary version
--include vendor/wiko/bloom/BoardConfigVendor.mk
+LOCAL_PATH := device/wiko/bloom
 
 
 TARGET_BOARD_PLATFORM := mt6582
@@ -17,6 +16,7 @@ TARGET_CPU_VARIANT := cortex-a7
 DEVICE_RESOLUTION := 480x800
 BOARD_HAS_NO_SELECT_BUTTON := true
 
+
 # make_ext4fs requires numbers in dec format
 BOARD_BOOTIMAGE_PARTITION_SIZE := 5767168
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 6207168
@@ -33,71 +33,39 @@ TARGET_BOOTLOADER_BOARD_NAME := bloom
 TARGET_USERIMAGES_USE_EXT4:=true
 TARGET_USERIMAGES_SPARSE_EXT_DISABLED := false
 
-BOARD_CUSTOM_BOOTIMG_MK := device/wiko/bloom/bootimg.mk
+BOARD_CUSTOM_BOOTIMG_MK := $(LOCAL_PATH)/bootimg.mk
 BOARD_MKBOOTIMG_ARGS := --board 1336460062
 
 
 # Flags
 TARGET_GLOBAL_CFLAGS   += -mfpu=neon -mfloat-abi=softfp
 TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
-# blob hacks Flags
-# COMMON_GLOBAL_CFLAGS += -DDISABLE_HW_ID_MATCH_CHECK
-# COMMON_GLOBAL_CFLAGS += -DMR1_AUDIO_BLOB
-# COMMON_GLOBAL_CFLAGS += -DMR0_AUDIO_BLOB
-# COMMON_GLOBAL_CFLAGS += -DNEEDS_VECTORIMPL_SYMBOLS
 
-##TARGET_KMODULES := true
 
-TARGET_PREBUILT_KERNEL := device/wiko/bloom/kernel
-TARGET_RECOVERY_FSTAB := device/wiko/bloom/rootdir/root/recovery.fstab
+TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/kernel
+TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/root/recovery.fstab
 
-# Philz Recovery
-#RECOVERY_VARIANT := philz
-BOARD_USE_MTK_LAYOUT := true
-BOARD_USE_NTFS_3G := false
-BOARD_HAS_NO_FB2PNG := true
-NO_AROMA_FILE_MANAGER := true
 
 # Deodex
-#WITH_DEXPREOPT := false
-#DISABLE_DEXPREOPT := true
+WITH_DEXPREOPT :=true
+DISABLE_DEXPREOPT := false
 
 #Camera
-##USE_CAMERA_STUB := true
+USE_CAMERA_STUB := true
 #BOARD_USE_JPEG := true
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_MTK := true
 BOARD_BLUETOOTH_DOES_NOT_USE_RFKILL := true
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/wiko/bloom/bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
 
-# MTK hacks for hw
-# TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
-# NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
-# TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
-# VSYNC_EVENT_PHASE_OFFSET_NS := -5000000
-# SF_VSYNC_EVENT_PHASE_OFFSET_NS := -5000000
-# PRESENT_TIME_OFFSET_FROM_VSYNC_NS := 0
 
 # EGL settings
-BOARD_EGL_CFG := device/wiko/bloom/rootdir/configs/egl.cfg
+BOARD_EGL_CFG := $(LOCAL_PATH)/rootdir/configs/egl.cfg
 USE_OPENGL_RENDERER := true
 BOARD_EGL_WORKAROUND_BUG_10194508 := true
 
-##TARGET_PROVIDES_GRALLOC := true
-##TARGET_LIBAGL_USE_GRALLOC_COPYBITS := true
-##TARGET_ELECTRONBEAM_FRAMES := 6
-
-#Graphics
-##BOARD_USES_SKIAHWJPEG := true
-
-#FIMG Acceleration
-##BOARD_USES_FIMGAPI := true
-
-#HWComposer
-##BOARD_USES_HWCOMPOSER := true
-##BOARD_USE_SYSFS_VSYNC_NOTIFICATION := true
 
 #Enable WEBGL in WebKit
 ENABLE_WEBGL := true
@@ -107,7 +75,7 @@ JS_ENGINE := v8
 
 # SELINUX
 BOARD_SEPOLICY_DIRS := \
-       device/wiko/bloom/sepolicy
+       $(LOCAL_PATH)/sepolicy
 
 BOARD_SEPOLICY_UNION := \
        device.te \
@@ -134,4 +102,36 @@ WIFI_DRIVER_FW_PATH_P2P:=P2P
 
 
 # power
-#TARGET_POWERHAL_VARIANT := cm
+TARGET_POWERHAL_VARIANT := cm
+
+# for migrate build system
+# temporarily open this two options
+HAVE_HTC_AUDIO_DRIVER := true
+BOARD_USES_GENERIC_AUDIO := true
+BOARD_USES_MTK_AUDIO := true
+
+
+
+TARGET_KMODULES := true
+
+COMMON_GLOBAL_CFLAGS += -DDISABLE_HW_ID_MATCH_CHECK -DNEEDS_VECTORIMPL_SYMBOLS
+TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
+
+# allow more than one lun file
+TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/virtual/android_usb/android0/f_mass_storage/lun%d/file"
+
+
+BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
+
+TARGET_USES_ION := true
+
+
+# Shader cache config options
+# Maximum size of the  GLES Shaders that can be cached for reuse.
+# Increase the size if shaders of size greater than 12KB are used.
+MAX_EGL_CACHE_KEY_SIZE := 12*1024
+
+# Maximum GLES shader cache size for each app to store the compiled shader
+# binaries. Decrease the size if RAM or Flash Storage size is a limitation
+# of the device.
+MAX_EGL_CACHE_SIZE := 2048*1024

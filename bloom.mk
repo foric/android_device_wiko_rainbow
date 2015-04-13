@@ -1,4 +1,4 @@
-$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
+#$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
@@ -11,6 +11,8 @@ $(call inherit-product, frameworks/native/build/phone-hdpi-512-dalvik-heap.mk)
 
 # PRODUCT_CHARACTERISTICS := nosdcard
 PRODUCT_CHARACTERISTICS := phone
+
+PRODUCT_LOCALES := ru_RU en_US
 
 DEVICE_PACKAGE_OVERLAYS += device/wiko/bloom/overlay
 
@@ -29,8 +31,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     lights.mt6582
 
-#PRODUCT_PACKAGES += \
-#    libmtkrilw
+
+PRODUCT_PACKAGES += \
+    libmtkrilw
 
 # audio
 
@@ -49,9 +52,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/wiko/bloom/rootdir/root/fstab.mt6582:root/fstab.mt6582 \
 device/wiko/bloom/rootdir/root/init.recovery.mt6582.rc:root/init.recovery.mt6582.rc \
-    device/wiko/bloom/rootdir/root/init.rc:root/init.rc \
     device/wiko/bloom/rootdir/root/init.mt6582.rc:root/init.mt6582.rc \
-    device/wiko/bloom/rootdir/root/init.project.rc:root/init.project.rc \
     device/wiko/bloom/rootdir/root/init.usb.rc:root/init.usb.rc \
     device/wiko/bloom/rootdir/root/factory_init.rc:root/factory_init.rc \
     device/wiko/bloom/rootdir/root/init.fuse.rc:root/init.fuse.rc \
@@ -59,6 +60,9 @@ device/wiko/bloom/rootdir/root/init.recovery.mt6582.rc:root/init.recovery.mt6582
     device/wiko/bloom/rootdir/root/ueventd.mt6582.rc:root/ueventd.mt6582.rc \
     device/wiko/bloom/rootdir/root/init.mt6582.usb.rc:root/init.mt6582.usb.rc \
     $(LOCAL_KERNEL):kernel
+
+PRODUCT_COPY_FILES += \
+    device/wiko/bloom/rootdir/root/init.rc:root/init.rc 
 
 #PRODUCT_COPY_FILES += \
 #	device/wiko/bloom/rootdir/configs/android.hardware.microphone.xml:system/etc/permissions/android.hardware.microphone.xml \
@@ -105,21 +109,22 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/rootdir/configs/media_codecs.xml:system/etc/media_codecs.xml \
 	$(LOCAL_PATH)/rootdir/configs/media_profiles.xml:system/etc/media_profiles.xml
 
+
+PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/rootdir/lib/libcam.paramsmgr.so:system/lib/libcam.paramsmgr.so 
+
+# GPS
+PRODUCT_COPY_FILES += \
+     $(LOCAL_PATH)/rootdir/configs/agps_profiles_conf2.xml:system/etc/agps_profiles_conf2.xml \
+
+# Thermal
+PRODUCT_COPY_FILES += \
+     $(LOCAL_PATH)/rootdir/configs/thermal.conf:system/etc/.tp/thermal.conf
+
+
 #$(call inherit-product, build/target/product/full.mk)
 
-PRODUCT_PROPERTY_OVERRIDES := \
-	ro.mediatek.version.release=ALPS.W10.24.p0 \
-	ro.mediatek.platform=MT6582 \
-	ro.mediatek.chip_ver=S01 \
-	ro.mediatek.version.branch=KK1.MP1 \
-	ro.mediatek.version.sdk=2 \
-	ro.telephony.sim.count=2 \
-	ro.allow.mock.location=0 \
-	ro.debuggable=1 \
-	persist.sys.usb.config=mtp,adb \
-	persist.service.adb.enable=1 \
-	persist.service.debuggable=1 \
-	persist.mtk.wcn.combo.chipid=-1
+
 
 PRODUCT_AAPT_CONFIG := normal hdpi
 PRODUCT_AAPT_PREF_CONFIG := hdpi
@@ -147,11 +152,24 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     setup_fs \
-    e2fsck
+    e2fsck 
+
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+    persist.sys.usb.config=mtp \
+    ro.secure=1 \
+    ro.allow.mock.location=0 \
+    ro.debuggable=1 \
+    persist.service.adb.enable=1 \
+    persist.service.debuggable=1
+
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    drm.service.enabled=true
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    wifi.interface=wlan0 \
+    wifi.supplicant_scan_interval=15
 
 PRODUCT_PACKAGES += Torch
-
-PRODUCT_NAME := full_bloom
-PRODUCT_DEVICE := bloom
 
 

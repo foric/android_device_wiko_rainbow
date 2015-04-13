@@ -25,6 +25,8 @@ on init
     chown root system /proc/lk_env
     chmod 0660 /proc/lk_env
 
+
+
 # mount different fs start
 
 on fs
@@ -842,10 +844,10 @@ service ap_daemon /system/bin/wpa_supplicant \
 	disabled
 	oneshot
 
-service wlanLoader /system/bin/wlan_loader
-    user root
-    group root
-    oneshot
+#service wlanLoader /system/bin/wlan_loader
+#    user root
+#    group root
+#    oneshot
   
 #
 # MT6620 related services (End)
@@ -994,6 +996,7 @@ service mtkbt /system/bin/mtkbt
     chown gps gps /sys/class/gpsdrv/gps/pwrsave
     chown gps gps /sys/class/gpsdrv/gps/status
 
+
 service agpsd /system/bin/mtk_agpsd
     class main
     socket agpsd stream 660 gps system
@@ -1036,17 +1039,17 @@ service msensord /system/bin/msensord
     class main
     oneshot
 
-service memsicd /system/bin/memsicd
-     disabled
-    user system
-    group system
-    class main
+#service memsicd /system/bin/memsicd
+#     disabled
+#    user system
+#    group system
+#    class main
 
-service memsicd3416x /system/bin/memsicd3416x
-     disabled
-	 user system
-    group system
-    class main
+#service memsicd3416x /system/bin/memsicd3416x
+#     disabled
+#	 user system
+#    group system
+#    class main
 
 service akmd09911 /system/bin/akmd09911
     disabled
@@ -1054,23 +1057,23 @@ service akmd09911 /system/bin/akmd09911
     group system
     class main
 
-service orientationd /system/bin/orientationd
-    disabled
-    user system
-    group system input
-    class main
+#service orientationd /system/bin/orientationd
+#    disabled
+#    user system
+#    group system input
+#    class main
 
-service AcdApiDaemon /system/bin/AcdApiDaemon
-    disabled
-    user system
-    group system
-    class main
+#service AcdApiDaemon /system/bin/AcdApiDaemon
+#    disabled
+#    user system
+#    group system
+#    class main
 
-service geomagneticd /system/bin/geomagneticd
-    disabled
-    user system
-    group system input
-    class main
+#service geomagneticd /system/bin/geomagneticd
+#    disabled
+#    user system
+#    group system input
+#    class main
         
 #
 #sensor service (end)
@@ -1081,9 +1084,9 @@ service shutdown /system/bin/shutdown
     group root
     disabled
 
-service NvRAMAgent /system/bin/nvram_agent_binder
-		user system
-		group system nvram
+#service NvRAMAgent /system/bin/nvram_agent_binder
+#		user system
+#		group system nvram
 
 service thermal_manager /system/bin/thermal_manager
     user root
@@ -1097,9 +1100,9 @@ service thermald /system/bin/thermald
     user system
     group system
 
-service sn /system/bin/sn
-    user root
-    oneshot
+#service sn /system/bin/sn
+#    user root
+#    oneshot
 
 
 
@@ -1110,15 +1113,15 @@ service poad /system/bin/poad
     oneshot
 
 #monitor battery status
-service batterywarning /system/bin/batterywarning
-    class main
-    user shell
-    group shell
+#service batterywarning /system/bin/batterywarning
+#    class main
+#    user shell
+#    group shell
 
-service backuprestore /system/bin/br_app_data_service
-	class main
-	socket backuprestore stream 0660 root sdcard_rw
-	user root
+#service backuprestore /system/bin/br_app_data_service
+#	class main
+#	socket backuprestore stream 0660 root sdcard_rw
+#	user root
 
 #service BGW /system/xbin/BGW
 #	user system
@@ -1128,3 +1131,5 @@ service MtkCodecService /system/bin/MtkCodecService
     class main
     user root
     group audio media sdcard_r
+
+

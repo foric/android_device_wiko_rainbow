@@ -1,2 +1,2 @@
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/device_bloom.mk
+    $(LOCAL_DIR)/full_bloom.mk
